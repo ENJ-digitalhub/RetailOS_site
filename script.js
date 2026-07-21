@@ -174,9 +174,11 @@
 
       var storeName = document.getElementById('storeName');
       var contactInfo = document.getElementById('contactInfo');
-      var willingPay = document.getElementById('willingPay');
 
-      var valid = storeName.value.trim() && contactInfo.value.trim() && willingPay.value.trim();
+      // FIX: "willing to pay" field removed from the form (retailos.html's
+      // beta is explicitly free — asking a pricing question contradicted
+      // that), so validation and the EmailJS payload no longer reference it.
+      var valid = storeName.value.trim() && contactInfo.value.trim();
       if (!valid) { betaForm.reportValidity(); return; }
 
       var submitBtn = betaForm.querySelector('[type="submit"]');
@@ -186,16 +188,15 @@
       emailjs.send('service_zh2141t', 'template_6ysnzme', {
         store_name: storeName.value.trim(),
         contact_info: contactInfo.value.trim(),
-        willing_pay: willingPay.value.trim(),
         submitted_at: new Date().toLocaleString()
       })
         .then(function () {
           betaForm.reset();
           betaForm.hidden = true;
-          if (formSuccess){
+          if (formSuccess) {
             submitBtn.textContent = 'Sent'
             formSuccess.hidden = false;
-          } 
+          }
         })
         .catch(function (err) {
           console.error('EmailJS error:', err);

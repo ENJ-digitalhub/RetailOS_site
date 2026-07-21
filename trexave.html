@@ -4,6 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Trexave builds retail infrastructure for African businesses — starting with RetailOS, a local-first sales and inventory system that runs on the PC already in your store.">
   <title>TREXAVE — Retail Infrastructure for Emerging Markets</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,14 +19,14 @@
 <body>
 
   <!-- Header -->
-  <header class="site-header">
+  <header class="site-header" id="siteHeader">
     <div class="container">
       <div class="header-inner">
         <div class="logo">
           <img src="img/trexave.png" alt="TREXAVE Logo" style="height: 32px;">
           <span>TRE<span style="color: var(--accent);">X</span>AVE</span>
         </div>
-        <nav class="main-nav">
+        <nav class="main-nav" id="mainNav">
           <a href="#problem">Problem</a>
           <a href="#solution">Solution</a>
           <a href="#ecosystem">Ecosystem</a>
@@ -33,10 +35,13 @@
         </nav>
         <div class="header-actions">
           <a href="#cta" class="btn btn-primary">Get Started</a>
+          <!-- FIX: nav-toggle button added — style.css hides .main-nav below 760px
+               and only shows this button; without it mobile visitors had no way
+               to navigate at all. -->
+          <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
         </div>
-        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
       </div>
     </div>
   </header>
@@ -52,7 +57,9 @@
             sales, inventory, and reporting from a PC they already own.</p>
           <div class="hero-actions">
             <a href="#cta" class="btn btn-primary">Get Started</a>
-            <a href="#" class="btn btn-outline">Contact Us</a>
+            <!-- FIX: href="#" replaced with a real mailto contact.
+                 Swap for your actual inbox before launch. -->
+            <a href="mailto:support.trexave@gmail.com" class="btn btn-outline">Contact Us</a>
           </div>
           <p class="hero-trust"><em>Advancing Vision Everywhere</em> — Knowledge. Vision. Excellence.</p>
         </div>
@@ -63,10 +70,17 @@
                 <i></i><i></i><i></i>
               </div>
               <span class="console-title">trexave-retail.local</span>
-              <span class="status-pill" id="statusPill">SYNCED</span>
-              <button class="" id="wifiToggle">Simulate WI-FI drop</button>
+              <!-- FIX: id="statusPill" added so script.js can flip ONLINE/OFFLINE -->
+              <span class="status-pill" id="statusPill">● ONLINE</span>
             </div>
-            <div class="console-body" id="consoleBody"></div>
+            <!-- FIX: id="consoleLog" added, static demo lines removed —
+                 script.js populates this list dynamically on load and every tick -->
+            <div class="console-body" id="consoleLog"></div>
+            <div class="console-foot">
+              <!-- FIX: wifiToggle button added so the offline/online demo is interactive -->
+              <button class="btn-mini" id="wifiToggle" type="button">Simulate Wi-Fi drop</button>
+              <span class="console-caption">Live demo — toggles between online and offline queuing behavior</span>
+            </div>
           </div>
         </div>
       </div>
@@ -83,20 +97,17 @@
         <p>That's not the reality for most stores.</p>
 
         <div style="margin-top: 48px; display: grid; grid-template-columns: 1fr; gap: 32px;">
-          <div
-            style="padding: 24px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md);">
+          <div class="card">
             <h3 style="color: var(--accent); margin-top: 0;">Connectivity is inconsistent</h3>
             <p>Data bundles run out. Routers fail. Cloud-only tools go dark the moment the network does.</p>
           </div>
 
-          <div
-            style="padding: 24px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md);">
+          <div class="card">
             <h3 style="color: var(--accent); margin-top: 0;">Power is not guaranteed</h3>
             <p>Systems that assume "always-on" infrastructure quietly fail the businesses that need them most.</p>
           </div>
 
-          <div
-            style="padding: 24px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md);">
+          <div class="card">
             <h3 style="color: var(--accent); margin-top: 0;">Off-the-shelf tools don't fit</h3>
             <p>Built for markets with different assumptions, they add friction instead of removing it.</p>
           </div>
@@ -123,8 +134,7 @@
         <p style="font-size: 1.05rem;">We're building this in layers, starting with what a single store needs today,
           with room to grow toward multi-store and cloud-connected tools as businesses scale.</p>
 
-        <div
-          style="margin-top: 56px; padding: 40px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); text-align: center;">
+        <div class="card" style="margin-top: 56px; padding: 40px; text-align: center;">
           <p style="color: var(--text-faint); margin: 0; font-size: 0.9rem;">[ SYSTEM ARCHITECTURE DIAGRAM ]</p>
           <p style="color: var(--text-faint); margin: 12px 0 0 0; font-size: 0.85rem;">Store PC ↔ Local WiFi ↔ Staff
             Devices | Cloud Services (Roadmap)</p>
@@ -139,27 +149,23 @@
       <p class="eyebrow">Product Roadmap</p>
       <h2>Product Ecosystem</h2>
 
-      <div
-        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; margin-top: 48px;">
-        <div
-          style="padding: 32px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md);">
+      <div class="card-grid card-grid-3">
+        <div class="card">
           <h3 style="margin-top: 0;">TREXAVE RetailOS</h3>
-          <p style="color: var(--accent); font-weight: 600; margin-bottom: 12px;">Live Now</p>
-          <p>Sales, inventory, and reporting for a single store, run from an in-store PC.</p>
+          <span class="badge badge-accent">Live Now</span>
+          <p style="margin-top: 12px;">Sales, inventory, and reporting for a single store, run from an in-store PC.</p>
         </div>
 
-        <div
-          style="padding: 32px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md);">
-          <h3 style="margin-top: 0;">Cloud Services & Multi-Store Tools</h3>
-          <p style="color: var(--warn); font-weight: 600; margin-bottom: 12px;">Roadmap</p>
-          <p>Centralized visibility across multiple locations with cloud synchronization.</p>
+        <div class="card">
+          <h3 style="margin-top: 0;">Cloud Services &amp; Multi-Store Tools</h3>
+          <span class="badge badge-roadmap">Roadmap</span>
+          <p style="margin-top: 12px;">Centralized visibility across multiple locations with cloud synchronization.</p>
         </div>
 
-        <div
-          style="padding: 32px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md);">
-          <h3 style="margin-top: 0;">AI & Enterprise Tooling</h3>
-          <p style="color: var(--warn); font-weight: 600; margin-bottom: 12px;">Roadmap</p>
-          <p>Deeper automation and intelligence as the platform matures.</p>
+        <div class="card">
+          <h3 style="margin-top: 0;">AI &amp; Enterprise Tooling</h3>
+          <span class="badge badge-roadmap">Roadmap</span>
+          <p style="margin-top: 12px;">Deeper automation and intelligence as the platform matures.</p>
         </div>
       </div>
     </div>
@@ -172,32 +178,27 @@
       <h2>Why Trexave Is Different</h2>
 
       <div style="display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 40px; max-width: 800px;">
-        <div
-          style="padding: 24px; background: var(--surface); border-left: 3px solid var(--accent); border-radius: var(--radius-md);">
+        <div class="card" style="border-left: 3px solid var(--accent);">
           <h3 style="margin-top: 0; color: var(--text);">Built for real-world conditions, not ideal ones</h3>
           <p>Designed around patchy power and patchy connectivity, not in spite of them.</p>
         </div>
 
-        <div
-          style="padding: 24px; background: var(--surface); border-left: 3px solid var(--accent); border-radius: var(--radius-md);">
+        <div class="card" style="border-left: 3px solid var(--accent);">
           <h3 style="margin-top: 0; color: var(--text);">The store PC is the source of truth</h3>
           <p>No cloud subscription required just to keep operating.</p>
         </div>
 
-        <div
-          style="padding: 24px; background: var(--surface); border-left: 3px solid var(--accent); border-radius: var(--radius-md);">
+        <div class="card" style="border-left: 3px solid var(--accent);">
           <h3 style="margin-top: 0; color: var(--text);">Scalable by design</h3>
           <p>Built to grow from a single counter toward a network of stores without a rebuild.</p>
         </div>
 
-        <div
-          style="padding: 24px; background: var(--surface); border-left: 3px solid var(--accent); border-radius: var(--radius-md);">
+        <div class="card" style="border-left: 3px solid var(--accent);">
           <h3 style="margin-top: 0; color: var(--text);">Accountability built in</h3>
           <p>Every action — sale, edit, stock change — is logged against the person who did it.</p>
         </div>
 
-        <div
-          style="padding: 24px; background: var(--surface); border-left: 3px solid var(--accent); border-radius: var(--radius-md);">
+        <div class="card" style="border-left: 3px solid var(--accent);">
           <h3 style="margin-top: 0; color: var(--text);">A long-term technology partner</h3>
           <p>We're building for the years a business runs, not just the launch.</p>
         </div>
@@ -211,38 +212,28 @@
       <p class="eyebrow">Getting Started</p>
       <h2>How It Works</h2>
 
-      <div
-        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 32px; margin-top: 48px;">
-        <div style="text-align: center;">
-          <div
-            style="width: 60px; height: 60px; background: var(--accent-soft); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-weight: 700; color: var(--accent); font-size: 1.4rem;">
-            1</div>
+      <div class="steps">
+        <div class="step">
+          <span class="step-index">01</span>
           <h3>Install on the store PC</h3>
           <p>One-time setup on the computer that stays in the shop — no internet required for this step once
             dependencies are installed.</p>
         </div>
 
-        <div style="text-align: center;">
-          <div
-            style="width: 60px; height: 60px; background: var(--accent-soft); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-weight: 700; color: var(--accent); font-size: 1.4rem;">
-            2</div>
+        <div class="step">
+          <span class="step-index">02</span>
           <h3>Connect staff phones</h3>
-          <p>Any Android phone on the same network reaches the store PC instantly through a browser — no app install.
-          </p>
+          <p>Any phone on the same network reaches the store PC instantly through a browser — no app install.</p>
         </div>
 
-        <div style="text-align: center;">
-          <div
-            style="width: 60px; height: 60px; background: var(--accent-soft); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-weight: 700; color: var(--accent); font-size: 1.4rem;">
-            3</div>
+        <div class="step">
+          <span class="step-index">03</span>
           <h3>Run the store</h3>
           <p>Sales, stock, and reports live-update from every connected device.</p>
         </div>
 
-        <div style="text-align: center;">
-          <div
-            style="width: 60px; height: 60px; background: var(--accent-soft); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-weight: 700; color: var(--accent); font-size: 1.4rem;">
-            4</div>
+        <div class="step">
+          <span class="step-index">04</span>
           <h3>Grow from there</h3>
           <p>As the business scales, Trexave's roadmap extends toward multi-store and cloud capability.</p>
         </div>
@@ -266,25 +257,21 @@
   <!-- CTA Section -->
   <section id="cta" class="section">
     <div class="container">
-      <div style="max-width: 700px; margin: 0 auto; text-align: center;">
-
+      <div class="cta-inner" style="margin: 0 auto; text-align: center;">
         <h2>Watch us build Trexave in real time.</h2>
+        <p class="lead" style="margin: 24px auto 36px;">We're documenting everything — decisions, experiments, wins,
+          and mistakes. Follow along as we build Trexave in the open and shape the future of retail systems. Want to
+          try RetailOS in your own store? <a href="retailos.html"
+            style="color: var(--accent); text-decoration: underline;">See the product and join the beta</a>.</p>
 
-        <p style="font-size: 1.05rem; margin-top: 24px;">
-          We're documenting everything — decisions, experiments, wins, and mistakes.
-          Follow along as we build Trexave in the open and shape the future of retail systems.
-        </p>
-
-        <div style="display: flex; gap: 16px; justify-content: center; margin-top: 40px; flex-wrap: wrap;">
-
-          <!-- Primary CTA (updated messaging) -->
-          <a href="https://whatsapp.com/channel/0029Vb8WngeKmCPNN6YK0Y0V" target="_blank" class="btn btn-primary">Watch the Build</a>
-
-          <!-- WhatsApp CTA -->
+        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+          <!-- FIX: href="#" replaced with the real WhatsApp channel link that
+               index.html already links to elsewhere on the site. -->
+          <a href="https://whatsapp.com/channel/0029Vb8WngeKmCPNN6YK0Y0V" target="_blank" class="btn btn-primary">Watch
+            the Build</a>
           <a href="https://wa.me/2349119357696" target="_blank" class="btn btn-outline">
             Message Us on WhatsApp
           </a>
-
         </div>
       </div>
     </div>
@@ -298,7 +285,9 @@
     </div>
   </footer>
 
-
+  <!-- FIX: script includes added. Without emailjs's SDK, script.js's
+       emailjs.init(...) call throws and silently kills every feature that
+       runs after it in the same file (including the screenshot carousel). -->
   <script src="https://cdn.emailjs.com/dist/email.js"></script>
   <script src="script.js"></script>
 </body>

@@ -69,6 +69,7 @@ body {
   font-size: 16px;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
+  transition: background .25s ease, color .25s ease;
 }
 
 img {
@@ -254,6 +255,12 @@ p:last-child {
   color: var(--accent);
 }
 
+/* NEW: small button used inside mockup cards (Approve/Reject etc.) */
+.btn-sm {
+  padding: 7px 12px;
+  font-size: 0.78rem;
+}
+
 /* ---------- Badges ---------- */
 .badge {
   display: inline-block;
@@ -312,6 +319,21 @@ p:last-child {
   flex-shrink: 0;
 }
 
+/* NEW: circular letter-mark logo used on retailos.html */
+.logo-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
 .main-nav {
   display: flex;
   align-items: center;
@@ -332,6 +354,26 @@ p:last-child {
   display: flex;
   align-items: center;
   gap: 14px;
+}
+
+/* NEW: round icon button used for the theme toggle */
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-size: 1.05rem;
+  transition: border-color .2s ease, color .2s ease;
+}
+
+.icon-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 .nav-toggle {
@@ -793,7 +835,10 @@ p:last-child {
   .shot-placeholder {
     height: 220px;
   }
-  .shot img {height: 220px;}
+
+  .shot img {
+    height: 220px;
+  }
 }
 
 /* ---------- Validation / About ---------- */
@@ -944,6 +989,50 @@ p:last-child {
 
 .form-success p {
   color: var(--text);
+}
+
+/* NEW: onboarding "spots left" bar — social-proof / urgency element
+   sits above a signup form. Width of .spots-bar-fill is set inline
+   per page (spotsClaimed / spotsTotal * 100%). */
+.spots-bar {
+  max-width: 520px;
+  margin: 0 auto 28px;
+  text-align: left;
+}
+
+.spots-bar-track {
+  width: 100%;
+  height: 8px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.spots-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-dim), var(--accent));
+  border-radius: 100px;
+  transition: width .4s ease;
+}
+
+.spots-bar-label {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-faint);
+}
+
+.spots-bar-label strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.spots-bar-label .spots-left {
+  color: var(--accent);
 }
 
 /* ---------- FAQ ---------- */
@@ -1143,4 +1232,691 @@ p:last-child {
   .hero-actions .btn {
     width: 100%;
   }
+}
+
+/* ==========================================================================
+   ADDENDUM — ported from retailos.html's dashboard-mockup markup.
+   These classes were referenced in the HTML but had no CSS anywhere,
+   so the dashboard/manager/admin/mobile mockups were rendering unstyled.
+   Kept in the same dark-surface / mono-accent language as the rest of
+   the sheet rather than inventing a second design system.
+   ========================================================================== */
+
+.glass-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.55);
+}
+
+/* --- Desktop dashboard mockup (hero) --- */
+.desktop-mockup-header {
+  display: flex;
+  align-items: center;
+  padding: 14px 16px;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+}
+
+.desktop-mockup-header .controls {
+  display: flex;
+  gap: 6px;
+}
+
+.desktop-mockup-header .control-btn {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--border);
+}
+
+.desktop-mockup-header .title {
+  margin: 0 auto;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-faint);
+}
+
+.desktop-mockup-content {
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  min-height: 480px;
+}
+
+.desktop-mockup-sidebar {
+  background: var(--bg-soft);
+  border-right: 1px solid var(--border);
+  padding: 16px 0;
+}
+
+.desktop-mockup-sidebar-item {
+  padding: 12px 20px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.desktop-mockup-sidebar-item.active {
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-left: 2px solid var(--accent);
+}
+
+.desktop-mockup-main {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.kpi-card {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+}
+
+.kpi-card .label {
+  font-size: 0.72rem;
+  color: var(--text-faint);
+  margin-bottom: 6px;
+}
+
+.kpi-card .value {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.kpi-card .change {
+  font-size: 0.72rem;
+  color: var(--success);
+  margin-top: 4px;
+}
+
+.chart-card,
+.table-card,
+.inventory-status-card {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+}
+
+.chart-title,
+.table-title {
+  font-size: 0.8rem;
+  color: var(--text-faint);
+  margin-bottom: 12px;
+}
+
+.css-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 90px;
+}
+
+.css-chart-bar {
+  flex: 1;
+  background: linear-gradient(180deg, var(--accent), var(--accent-dim));
+  border-radius: 3px 3px 0 0;
+}
+
+.mockup-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.78rem;
+}
+
+.mockup-table th {
+  text-align: left;
+  color: var(--text-faint);
+  font-weight: 500;
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.mockup-table td {
+  padding: 8px;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.status-badge {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  padding: 2px 8px;
+  border-radius: 100px;
+}
+
+.status-badge.success {
+  background: var(--success-soft);
+  color: var(--success);
+}
+
+.status-badge.pending {
+  background: var(--warn-soft);
+  color: var(--warn);
+}
+
+.inventory-status-card .item {
+  margin-bottom: 10px;
+}
+
+.inventory-status-card .item-name {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.progress-bar-container {
+  width: 100%;
+  height: 6px;
+  background: var(--bg-soft);
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  border-radius: 100px;
+}
+
+.progress-bar.high {
+  background: var(--success);
+}
+
+.progress-bar.medium {
+  background: var(--warn);
+}
+
+.progress-bar.low {
+  background: #E5484D;
+}
+
+/* --- Sync diagram (how-it-works) --- */
+.sync-diagram {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 32px 24px;
+}
+
+.sync-node {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px 18px;
+  font-size: 0.85rem;
+  color: var(--text);
+  text-align: center;
+}
+
+.sync-connection {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sync-connection .line {
+  width: 40px;
+  height: 1px;
+  background: var(--border);
+}
+
+.sync-connection .label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-faint);
+  white-space: nowrap;
+}
+
+.sync-arrow {
+  color: var(--accent);
+  font-size: 1.2rem;
+}
+
+/* --- Manager / Admin mockups (demo section) --- */
+.manager-mockup-header,
+.admin-mockup-header,
+.report-mockup-header {
+  padding: 14px 18px;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-faint);
+}
+
+.manager-mockup-content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  padding: 20px;
+}
+
+.manager-card {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+}
+
+.manager-card .card-header {
+  margin-bottom: 10px;
+}
+
+.card-title {
+  font-size: 0.8rem;
+  color: var(--text-faint);
+}
+
+.card-value {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.card-text {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.metric-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.metric-item:last-child {
+  border-bottom: none;
+}
+
+.metric-label {
+  color: var(--text-muted);
+}
+
+.metric-value {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.alert-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: var(--warn);
+  padding: 6px 0;
+}
+
+.admin-mockup-content {
+  display: grid;
+  grid-template-columns: 170px 1fr;
+}
+
+.admin-sidebar {
+  background: var(--bg-soft);
+  border-right: 1px solid var(--border);
+  padding: 16px 0;
+}
+
+.admin-sidebar-item {
+  padding: 12px 20px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.admin-sidebar-item.active {
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-left: 2px solid var(--accent);
+}
+
+.admin-main-content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.admin-card {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+}
+
+.restock-request-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-soft);
+  flex-wrap: wrap;
+}
+
+.restock-request-item:last-child {
+  border-bottom: none;
+}
+
+.restock-product {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.restock-details {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-faint);
+}
+
+.restock-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.log-item {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.log-item:last-child {
+  border-bottom: none;
+}
+
+.system-status-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  padding: 6px 0;
+}
+
+.system-status-item .label {
+  color: var(--text-muted);
+}
+
+/* --- Mobile mockup --- */
+.mobile-mockup {
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.mobile-mockup-screen {
+  display: flex;
+  flex-direction: column;
+  min-height: 480px;
+}
+
+.mobile-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.mobile-search-bar {
+  padding: 12px 16px;
+}
+
+.mobile-search-bar input {
+  width: 100%;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  color: var(--text);
+  font-size: 0.85rem;
+}
+
+.mobile-content {
+  flex: 1;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mobile-card {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+}
+
+.mobile-quick-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.mobile-action-btn {
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.mobile-bottom-nav {
+  display: flex;
+  justify-content: space-around;
+  padding: 12px 8px;
+  border-top: 1px solid var(--border);
+  background: var(--surface-2);
+}
+
+.mobile-nav-item {
+  font-size: 0.68rem;
+  color: var(--text-faint);
+}
+
+.mobile-nav-item.active {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* --- Video card --- */
+.video-card {
+  position: relative;
+  height: 100%;
+  min-height: 260px;
+  background: var(--surface-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-card-overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.play-button {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #1a0d00;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+.video-card-text {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.duration-badge {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  background: rgba(0, 0, 0, 0.6);
+  color: var(--text);
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+/* --- Report mockup --- */
+.report-mockup-content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.report-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.report-card {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+}
+
+.report-chart-placeholder {
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-faint);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  background: var(--bg-soft);
+  border-radius: var(--radius-sm);
+}
+
+.report-list-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.report-list-item:last-child {
+  border-bottom: none;
+}
+
+.report-list-item .label {
+  color: var(--text-muted);
+}
+
+.report-list-item .value {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.report-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 760px) {
+
+  .desktop-mockup-content,
+  .admin-mockup-content {
+    grid-template-columns: 1fr;
+  }
+
+  .desktop-mockup-sidebar,
+  .admin-sidebar {
+    display: none;
+  }
+
+  .kpi-grid,
+  .manager-mockup-content,
+  .report-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ==========================================================================
+   ADDENDUM — light theme override.
+   Applied via [data-theme="light"] on <html>, toggled by the existing
+   theme-toggle button script already in retailos.html. Everything else
+   in this sheet reads from the same custom properties, so this block
+   is the only thing that needs to change.
+   ========================================================================== */
+
+html[data-theme="light"] {
+  --bg: #F7F5F2;
+  --bg-soft: #EFEBE5;
+  --surface: #FFFFFF;
+  --surface-2: #F2EFEA;
+  --border: #E2DDD4;
+  --border-soft: #EAE5DC;
+  --text: #1A1714;
+  --text-muted: #55504A;
+  --text-faint: #8A8479;
+  --accent-soft: rgba(255, 122, 0, 0.10);
+  --success-soft: rgba(47, 214, 140, 0.10);
+  --warn-soft: rgba(255, 200, 87, 0.16);
+}
+
+html[data-theme="light"] .site-header {
+  background: rgba(247, 245, 242, 0.85);
+}
+
+html[data-theme="light"] .btn-primary {
+  color: #1a0d00;
+}
+
+html[data-theme="light"] .shot-placeholder {
+  background: repeating-linear-gradient(135deg,
+      var(--surface-2),
+      var(--surface-2) 10px,
+      var(--surface) 10px,
+      var(--surface) 20px);
+}
+
+html[data-theme="light"] .console,
+html[data-theme="light"] .glass-panel,
+html[data-theme="light"] .card,
+html[data-theme="light"] .step,
+html[data-theme="light"] .price-card,
+html[data-theme="light"] .faq-item,
+html[data-theme="light"] .beta-form {
+  box-shadow: 0 20px 40px -24px rgba(30, 25, 15, 0.18);
 }
